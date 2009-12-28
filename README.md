@@ -7,31 +7,25 @@ A dummy plugin did for easy static page maintenance.
 
 Include the SimplePages into a PagesController:
 
-  `
   class PagesController
     include SimplePages
   end
-  `
 
 Then add into your routes the PagesController route:
 
-  `
   ActionController::Routing::Routes.draw do |map|
     ...
     map.resources :pages
     ...
   end
-  `
 
 Now create the folder pages into your views folder and put there the templates you wish to render out. Remember to add a show.html.erb as the default template:
 
-  `
   + app
   |- views
      |- pages
         |- show.html.erb
         |- about_us.html.erb
-  `
 
 So you can access the views getting:
 
