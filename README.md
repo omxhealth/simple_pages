@@ -43,6 +43,10 @@ You can get it changing the routes to:
       ...
       map.connect ':id', :controller => 'show', :action => 'show'
     end
+    
+## Acknowledgment
+
+fnando's has_permalink plugin where I got the [permalink method](http://github.com/fnando/has_permalink/blob/master/lib/permalink/string_ext.rb).
 
 Copyright (c) 2009 [Bruno Azisaka Maciel], released under the MIT license
 

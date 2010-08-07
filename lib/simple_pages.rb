@@ -5,7 +5,7 @@ module SimplePages
 
   protected
   def action
-    page.underscore
+    @action ||= permalink(page_id)
   end
 
   def executes_action
@@ -21,7 +21,18 @@ module SimplePages
     render 'not_found', :status => 404
   end
 
-  def page
-    @page ||= params[:id]
+  def page_id
+    @page_id ||= params[:id]
+  end
+  
+  def permalink(string)
+    str = ActiveSupport::Multibyte::Chars.new(string)
+    str = str.normalize(:kd).gsub(/[^\x00-\x7F]/,'').to_s
+    str = URI.unescape(str)
+    str.gsub!(/[^-\w\d]+/sim, "-")
+    str.gsub!(/-+/sm, "-")
+    str.gsub!(/^-?(.*?)-?$/, '\1')
+    str.downcase!
+    str.underscore
   end
 end
