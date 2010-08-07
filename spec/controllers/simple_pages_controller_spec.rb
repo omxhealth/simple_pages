@@ -77,12 +77,6 @@ describe SimplePagesController, "using special characters like" do
     specify { should render_template 'sao_paulo_ribeirao' }
   end
   
-  context "\"testing-testing\"" do
-    before { get :show, :id => 'testing-testing' }
-    
-    specify { should render_template 'testing_testing' }
-  end
-  
   context "\"são-paulo ribeirão\"" do
     before { get :show, :id => 'são-paulo%20ribeirão' }
     
