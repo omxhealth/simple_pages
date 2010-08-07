@@ -22,7 +22,12 @@ module SimplePages
   end
   
   def template_path
-    [controller_name, params[:locale], action].compact.join("/")
+    [controller_name, page_locale, action].compact.join("/")
+  end
+  
+  def page_locale
+    return I18n.locale = params[:locale] if params[:locale]
+    return I18n.locale if I18n.locale != I18n.default_locale
   end
 
   def page_id
