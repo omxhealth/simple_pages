@@ -4,6 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + "/rails/config/environment")
 
 require 'spec'
 require 'spec/rails'
+require 'rr'
 
 require File.join(File.dirname(__FILE__), '..', 'init')
 
@@ -23,4 +24,7 @@ module SimplePages
   end
 end
 
-Spec::Runner.configure { |config| config.include(SimplePages::Matchers) }
+Spec::Runner.configure do |config| 
+  config.include(SimplePages::Matchers)
+  config.mock_with :rr
+end

@@ -10,15 +10,19 @@ module SimplePages
 
   def executes_action
     send(action)
-    render action
+    render template_path
   rescue ActionView::MissingTemplate
     render 'show'
   end
 
   def renders_template
-    render action
+    render template_path
   rescue ActionView::MissingTemplate
     render 'not_found', :status => 404
+  end
+  
+  def template_path
+    [controller_name, params[:locale], action].compact.join("/")
   end
 
   def page_id
