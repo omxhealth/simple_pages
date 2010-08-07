@@ -12,16 +12,14 @@ class SimplePagesController < ActionController::Base
   end
 end
 
+SimplePagesController.view_paths = File.join(File.dirname(__FILE__) + '/../views')
+
 ActionController::Routing::Routes.draw do |map|
   map.resources :simple_pages
 end
 
 describe SimplePagesController do
   integrate_views
-  
-  before do
-    SimplePagesController.view_paths = File.join(File.dirname(__FILE__) + '/../views')
-  end
 
   context "when the template doesn't exist" do
     before { get :show, :id => 'nothing' }
