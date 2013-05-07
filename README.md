@@ -1,25 +1,27 @@
 # Simple Pages
 
-A dummy plugin made for easy static page maintenance.
-
+This gem aims to make it easy to have "static" pages in a Rails
+application.
 
 ## Example
 
 Include the SimplePages into a PagesController:
 
-    class PagesController
+    class PagesController < ApplicationController
       include SimplePages
     end
 
-Then add into your routes the PagesController route:
+Then add the PagesController route into your routes:
 
-    ActionController::Routing::Routes.draw do |map|
+    Dummy::Application.routes.draw do
       ...
-      map.resources :pages
+      resources :pages
       ...
     end
 
-Now create the folder pages into your views folder and put there the templates you wish to render out. Remember to add a show.html.erb as the default template:
+Now create the pages folder into your views folder and put there the
+templates you want to render. **Remember to add a show.html.erb as the
+default template**:
 
     + app
     |- views
@@ -27,7 +29,7 @@ Now create the folder pages into your views folder and put there the templates y
           |- show.html.erb
           |- about_us.html.erb
 
-So you can access the views getting:
+So you can access the views as:
 
     http://localhost:3000/pages/about-us
 
@@ -39,16 +41,14 @@ Let's say you want to put the PagesController as a default route and get this be
 
 You can get it changing the routes to:
 
-    ActionController::Routing::Routes.draw do |map|
+    Dummy::Application.routes.draw do
       ...
-      map.connect ':id', :controller => 'show', :action => 'show'
+      match '*id' => 'pages#show'
     end
     
-## Acknowledgment
+## License
 
-fnando's has_permalink plugin where I got the [permalink method](http://github.com/fnando/has_permalink/blob/master/lib/permalink/string_ext.rb).
-
-Copyright (c) 2009 [Bruno Azisaka Maciel], released under the MIT license
+Copyright (c) 2013 [Bruno Azisaka Maciel], released under the MIT license
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
