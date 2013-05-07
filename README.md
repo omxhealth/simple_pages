@@ -1,6 +1,6 @@
 # Simple Pages
 
-A dummy plugin did for easy static page maintenance.
+A dummy plugin made for easy static page maintenance.
 
 
 ## Example

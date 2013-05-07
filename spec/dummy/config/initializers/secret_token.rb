@@ -1,0 +1,1 @@
+Dummy::Application.config.secret_token = '9b6732ba44fd8625c7eadcac4c16c3e09ddf8e9b8df9e8dfb5e3da5bad77ce424324e8cf132c5cb723302dba28697fd88111895610ca82d3f13d9131a5570eb0'

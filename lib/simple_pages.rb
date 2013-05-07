@@ -1,47 +1,42 @@
 module SimplePages
-  def show
-    respond_to?(action) ? executes_action : renders_template
+  def self.included(base)
+    base.send :include, InstanceMethods
   end
 
-  protected
-  def action
-    @action ||= permalink(page_id)
-  end
+  module InstanceMethods
+    def show
+      respond_to?(page_action) ? executes_page_action : render_page_template
+    end
 
-  def executes_action
-    send(action)
-    render template_path
-  rescue ActionView::MissingTemplate
-    render 'show'
-  end
+    protected
+    def page_action
+      @page_action ||= page_permalink params[:id]
+    end
 
-  def renders_template
-    render template_path
-  rescue ActionView::MissingTemplate
-    render 'not_found', :status => 404
-  end
-  
-  def template_path
-    [controller_name, page_locale, action].compact.join("/")
-  end
-  
-  def page_locale
-    return I18n.locale = params[:locale] if params[:locale]
-    return I18n.locale if I18n.locale != I18n.default_locale
-  end
+    def executes_page_action
+      send page_action
+      render page_template_path
+    rescue ActionView::MissingTemplate
+      render 'show'
+    end
 
-  def page_id
-    @page_id ||= params[:id]
-  end
-  
-  def permalink(string)
-    str = ActiveSupport::Multibyte::Chars.new(string)
-    str = str.normalize(:kd).gsub(/[^\x00-\x7F]/,'').to_s
-    str = URI.unescape(str)
-    str.gsub!(/[^-\w\d]+/sim, "-")
-    str.gsub!(/-+/sm, "-")
-    str.gsub!(/^-?(.*?)-?$/, '\1')
-    str.downcase!
-    str.underscore
+    def render_page_template
+      render page_template_path
+    rescue ActionView::MissingTemplate
+      render 'not_found', :status => 404
+    end
+
+    def page_template_path
+      [controller_name, page_locale, page_action].compact * "/"
+    end
+
+    def page_locale
+      return I18n.locale = params[:locale] if params[:locale]
+      return I18n.locale if I18n.locale != I18n.default_locale
+    end
+
+    def page_permalink(string)
+      URI.unescape(string).parameterize.underscore
+    end
   end
 end
