@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.summary     = "A dummy plugin did for easy static page maintenance."
   s.description = "A dummy plugin did for easy static page maintenance."
 
-  s.files = Dir["{lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
+  s.files = Dir["{lib}/**/*"] + ["Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 3.2.13"
