@@ -34,4 +34,10 @@ describe SimplePagesController do
     it { response.should be_success }
     it { response.body.should =~ /\-1/ }
   end
+
+  context "when the id is nil" do
+    before { get :show, id: nil }
+    it { response.should be_success }
+    it { should render_template 'show' }
+  end
 end
