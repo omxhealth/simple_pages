@@ -1,5 +1,7 @@
 # Simple Pages
 
+[![Build Status](https://travis-ci.org/azisaka/simple_pages.png?branch=master)](https://travis-ci.org/azisaka/simple_pages)
+
 This gem aims to make it easy to have "static" pages in a Rails
 application.
 
