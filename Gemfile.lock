@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple_pages (0.1.1)
+    simple_pages (0.2.0)
       rails (~> 3.2.13)
 
 GEM
@@ -48,8 +48,7 @@ GEM
     i18n (0.6.1)
     journey (1.0.4)
     json (1.7.7)
-    mail (2.5.3)
-      i18n (>= 0.4.0)
+    mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
