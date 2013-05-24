@@ -2,23 +2,29 @@
 
 [![Build Status](https://travis-ci.org/azisaka/simple_pages.png?branch=master)](https://travis-ci.org/azisaka/simple_pages)
 
-This gem aims to make it easy to have "static" pages in a Rails
-application.
+Every time I create a project that needs "static" pages, I have to
+create a controller to handle the views. Sometimes it requires
+translations, some processing, and it takes some time effort to do it. 
+
+Althought it's just a simple controller, you need to handle special
+characters like "-" or missing templates with a 404. 
+
+Time gem was created make it simpler.
 
 ## Example
 
-Include the SimplePages into a PagesController:
+To have it working in a standard way, just install the gem:
 
-    class PagesController < ApplicationController
-      include SimplePages
-    end
+    gem 'simple_pages'
 
-Then add the PagesController route into your routes:
+Then ``bundle install`` it. 
+
+After that, you can mount the engine as:
 
     Dummy::Application.routes.draw do
       ...
-      resources :pages
-      ...
+      
+      mount SimplePages::Engine => "/"
     end
 
 Now create the pages folder into your views folder and put there the
@@ -33,21 +39,39 @@ default template**:
 
 So you can access the views as:
 
-    http://localhost:3000/pages/about-us
-
-## Improving
-
-Let's say you want to put the PagesController as a default route and get this behavior:
-
     http://localhost:3000/about-us
 
-You can get it changing the routes to:
+## 404
 
+You can create a custom 404 action, just create a view named
+not_found.html.erb
+
+## Custom Controller and Actions
+
+It's possible to use a custom controller, just create it
+
+    class CustomPagesController < SimplePages::PagesController
+      def add_your_action
+        # to do something
+      end
+    end
+
+And change the routes.rb to
+
+    
     Dummy::Application.routes.draw do
       ...
-      match '*id' => 'pages#show'
+      
+      match "*id" => "custom_pages#show"
     end
-    
+
+Then you can access as
+
+    http://localhost:3000/add-your-action
+
+You can create a view named add_your_action.html.erb or just let it
+render the show.html.erb view.
+
 ## License
 
 Copyright (c) 2013 [Bruno Azisaka Maciel], released under the MIT license
