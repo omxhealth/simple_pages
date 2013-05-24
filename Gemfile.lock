@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple_pages (0.2.0)
+    simple_pages (0.2.1)
       rails (~> 3.2.13)
 
 GEM

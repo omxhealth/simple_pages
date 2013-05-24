@@ -1,5 +1,5 @@
 module SimplePages
-  class PagesController < ActionController::Base
+  class PagesController < ::ApplicationController
     def show
       if page_action.present? && respond_to?(page_action)
         executes_page_action
