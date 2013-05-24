@@ -8,6 +8,7 @@ Rails.backtrace_cleaner.remove_silencers!
 require 'rspec'
 require 'rspec/rails'
 require 'rr'
+require 'capybara/rspec'
 
 RSpec::Matchers.define :be_not_found do
   match do |actual|

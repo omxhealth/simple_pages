@@ -1,6 +1,4 @@
-class SimplePagesController < ApplicationController
-  include SimplePages
-
+class CustomPagesController < SimplePages::PagesController
   def plus
     @total = 0 + 1
   end

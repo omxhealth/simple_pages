@@ -1,6 +1,6 @@
 Dummy::Application.routes.draw do
-  resources :i18n_simple_pages
-  match "*id" => "simple_pages#show"
+  match "/custom_pages/*id" => "custom_pages#show"
+  match "/pt/*id" => "custom_pages#show"
 
-  root to: "simple_pages#show"
+  mount SimplePages::Engine => "/"
 end
